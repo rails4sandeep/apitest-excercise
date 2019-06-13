@@ -1,5 +1,6 @@
 {
   "url": "https://digitalapi.auspost.com.au/",
+  "apiTimeout": 20000,
   "key": "",
   "test": {
     "suburb": "Southbank",
