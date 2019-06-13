@@ -7,7 +7,7 @@ let agentOne = require('superagent');
 let data = require(path.join(__dirname, '/config/data'));
 
 describe('AUPOST API', function () {
-    this.timeout(20000);
+    this.timeout(data['apiTimeout']);
     it('should return postcode of the suburb', async function()  {
         let res = await agentOne
             .get(data.url + 'postcode/search.json?q=' + data['test']['suburb'] + '&state=' + data['test']['state'])
