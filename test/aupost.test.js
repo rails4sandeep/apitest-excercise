@@ -8,45 +8,6 @@ let data = require(path.join(__dirname, '/config/data'));
 
 describe('AUPOST API', function () {
     this.timeout(data['apiTimeout']);
-    it('should return postcode of the suburb', async function()  {
-        let res = await agentOne
-            .get(data.url + 'postcode/search.json?q=' + data['test']['suburb'] + '&state=' + data['test']['state'])
-            .set('auth-key', data['key']);
-        let fromPostCode = res.body['localities']['locality']['postcode'];
-        expect(res.text).to.be.not.empty;
-    });
-
-    it('should return list of domestic letter weights', async function()  {
-        let res = await agentOne
-            .get(data.url + 'postage/letter/domestic/weight.json')
-            .set('auth-key', data['key']);
-        expect(res.text).to.be.not.empty;
-    });
-
-    it('should return list of domestic letter sizes', async function()  {
-        let res = await agentOne
-            .get(data.url + 'postage/letter/domestic/size.json')
-            .set('auth-key', data['key']);
-        expect(res.text).to.be.not.empty;
-    });
-
-    it('should return list of domestic letter thickness', async function()  {
-        let res = await agentOne
-            .get(data.url + 'postage/letter/domestic/thickness.json')
-            .set('auth-key', data['key']);
-        expect(res.text).to.be.not.empty;
-    });
-
-    it('should return list of service types', async function()  {
-        let res = await agentOne
-            .get(data.url + 'postage/parcel/domestic/service.json?' +
-                'from_postcode=2000' +
-                '&to_postcode=3000' +
-                '&length=10&width=10' +
-                '&height=10&weight=1')
-            .set('auth-key', data['key']);
-        expect(res.text).to.be.not.empty;
-    });
 
     it('should be able to calculate the postage for letter based on the test criteria', async function () {
         //find fromPostCode
@@ -102,4 +63,46 @@ describe('AUPOST API', function () {
         expect(res.body['postage_result']['costs']['cost']['item']).to.be.not.empty;
         expect(res.body['postage_result']['costs']['cost']['cost']).to.be.not.empty;
     });
+
+    it('should return postcode of the suburb', async function()  {
+        let res = await agentOne
+            .get(data.url + 'postcode/search.json?q=' + data['test']['suburb'] + '&state=' + data['test']['state'])
+            .set('auth-key', data['key']);
+        let fromPostCode = res.body['localities']['locality']['postcode'];
+        expect(res.text).to.be.not.empty;
+    });
+
+    it('should return list of domestic letter weights', async function()  {
+        let res = await agentOne
+            .get(data.url + 'postage/letter/domestic/weight.json')
+            .set('auth-key', data['key']);
+        expect(res.text).to.be.not.empty;
+    });
+
+    it('should return list of domestic letter sizes', async function()  {
+        let res = await agentOne
+            .get(data.url + 'postage/letter/domestic/size.json')
+            .set('auth-key', data['key']);
+        expect(res.text).to.be.not.empty;
+    });
+
+    it('should return list of domestic letter thickness', async function()  {
+        let res = await agentOne
+            .get(data.url + 'postage/letter/domestic/thickness.json')
+            .set('auth-key', data['key']);
+        expect(res.text).to.be.not.empty;
+    });
+
+    it('should return list of service types', async function()  {
+        let res = await agentOne
+            .get(data.url + 'postage/parcel/domestic/service.json?' +
+                'from_postcode=2000' +
+                '&to_postcode=3000' +
+                '&length=10&width=10' +
+                '&height=10&weight=1')
+            .set('auth-key', data['key']);
+        expect(res.text).to.be.not.empty;
+    });
+
+
 });
