@@ -1,0 +1,12 @@
+{
+  "url": "https://digitalapi.auspost.com.au/",
+  "key": "",
+  "test": {
+    "suburb": "Southbank",
+    "state": "VIC",
+    "fromSuburb": "Westmead",
+    "fromState": "NSW",
+    "toSuburb": "Southbank",
+    "toState": "VIC"
+  }
+}
